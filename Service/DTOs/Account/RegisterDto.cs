@@ -16,10 +16,10 @@ namespace Service.DTOs.Account
     {
         public RegisterDtoValidator()
         {
-            RuleFor(x => x.UserName).NotNull().WithMessage("Name is required");
+            RuleFor(x => x.UserName).NotNull().WithMessage("UserName is required");
             RuleFor(x => x.Email).EmailAddress().WithMessage("Email formatr is wrong").NotNull().WithMessage("Name is required");
-            RuleFor(x => x.Email).EmailAddress().WithMessage("Email formatr is wrong").NotNull().WithMessage("Name is required");
-
+            RuleFor(x => x.Password).NotNull().WithMessage("Password is required");
+            RuleFor(x => x.FullName).NotEmpty().WithMessage("Password is required");
         }
     }
 }

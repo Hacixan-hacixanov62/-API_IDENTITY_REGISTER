@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using Domain.Entities;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Service.DTOs.Account;
 using Service.Helpers.Account;
+using Service.Helpers.Exceptions;
 using Service.Services.Interfaces;
 
 namespace Service.Services
@@ -21,6 +23,19 @@ namespace Service.Services
             _roleManager = roleManager;
             _mapper = mapper;
             
+        }
+
+        public async Task<UserDto> GetUserByUserNameAsync(string username)
+        {
+            var existUser = await _userManager.FindByNameAsync(username);
+
+            return existUser is null ? throw new NotFoundException($"{username} - user notfound") : _mapper.Map<UserDto>(existUser);
+
+        }
+
+        public async Task<IEnumerable<UserDto>> GetUsersAsync()
+        {
+           return _mapper.Map<IEnumerable<UserDto>>(await _userManager.Users.ToListAsync());
         }
 
         public async Task<RegisterResponse> SignUpAsync(RegisterDto model)

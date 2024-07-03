@@ -12,6 +12,7 @@ using Service.DTOs.Admin.Countries;
 using Service.Helpers;
 using Service.Services.Interfaces;
 using Service.Services;
+using Service.DTOs.Account;
 
 namespace Service
 {
@@ -27,6 +28,9 @@ namespace Service
             });
 
             services.AddScoped<IValidator<CountryCreateDto>, CountryCreateDtoValidator>();
+            services.AddScoped<IValidator<RegisterDto>, RegisterDtoValidator>();
+
+
 
             services.AddScoped<ICountryService, CountryService>();
             services.AddScoped<ICityService, CityService>();

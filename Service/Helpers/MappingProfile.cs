@@ -78,6 +78,7 @@ namespace Service.Helpers
 
 
             CreateMap<RegisterDto, AppUser>();
+            CreateMap<AppUser, UserDto>();
         }
     }
 }

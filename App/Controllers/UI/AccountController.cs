@@ -34,5 +34,18 @@ namespace App.Controllers.UI
 
             return Ok(response);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            return Ok(await _accountService.GetUsersAsync());
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetUserByUserName([FromQuery] string username)
+        {
+            return Ok(await _accountService.GetUserByUserNameAsync(username));
+        }
+
     }
 }
